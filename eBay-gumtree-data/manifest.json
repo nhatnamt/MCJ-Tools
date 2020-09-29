@@ -10,6 +10,7 @@
           "js": ["jquery-3.5.1.min.js","content.js"]
         }
       ],
+    "options_page": "options.html",
     "browser_action": {
         "default_icon": "img/icon.png"
     },
@@ -25,6 +26,7 @@
         "contextMenus",
         "unlimitedStorage",
         "clipboardRead",
-        "clipboardWrite"		
+        "clipboardWrite",	
+        "notifications"
     ]
 }
