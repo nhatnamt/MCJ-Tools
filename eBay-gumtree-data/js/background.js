@@ -1,35 +1,33 @@
 // background.js
-var user_name = "";
 // Called when the user clicks on the browser action.
-chrome.contextMenus.create({
-  title: "Your title here",
-  contexts: ["browser_action"],
-  onclick: function() {
-      chrome.tabs.create({ url: chrome.runtime.getURL("options.html") });
-      console.log("click");
-  }
-});
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.browserAction.onClicked.addListener(
+  function(tab) {
     // Send a message to the active tab
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       var activeTab = tabs[0];
       chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
     });
-  });
+  }
+);
+
+// Called when content.js finish extracting data
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if( request.message === "open_new_tab" ) {
-      copyToClipboard(request.data);
+    if(request.message === "pass_it_on") {
+      request.data[5] = localStorage.username;
+      copyToClipboard(request.data.join("\t"));
       var opt = {
         type: "basic",
-        title: "Primary Title",
-        message: "Primary message to display",
+        title: "Hi " + localStorage.username,
+        message: request.data[1],
         iconUrl: "img/icon.png"
       }
       chrome.notifications.create("", opt, callback);
     }
   }
 );
+
+// Copy extracted data to clipboard
 function copyToClipboard(str) {
   // Create a dummy input to copy the string array inside it
   var dummy = document.createElement("input");
@@ -43,7 +41,6 @@ function copyToClipboard(str) {
   document.execCommand("copy");
   document.body.removeChild(dummy);
 }
-function callback() {
-  console.log("Notification succesfull");
-  //notification confirmed
-}
+
+// dummy function for notification
+function callback() {}
