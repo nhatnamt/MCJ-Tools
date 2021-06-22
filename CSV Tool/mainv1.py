@@ -28,7 +28,6 @@ def main():
                 f_n = 'eBay.csv'
             time.sleep(0.2)
 
-
     list_len = len(row)-3
     writing_list = [['Row type', 'Recipient contact name', 'Recipient business name', 'Recipient address line 1', 'Recipient address line 2', 'Recipient address line 3', 'Recipient suburb', 'Recipient state', 'Recipient postcode', 'Send tracking email to recipient', 'Recipient email address', 'Recipient phone number', 'Delivery/special instruction 1', 'Special instruction 2', 'Special instruction 3', 'Sender reference 1 ', 'Sender reference 2', 'Product id', 'Authority to leave', 'Safe drop ', 'Quantity', 'Packaging type', 'Weight', 'Length', 'Width', 'Height', 'Parcel contents', 'Transit cover value']]
     sp = ['']
