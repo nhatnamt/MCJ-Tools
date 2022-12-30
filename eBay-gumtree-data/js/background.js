@@ -13,7 +13,7 @@ chrome.browserAction.onClicked.addListener(
 // Called when content.js finish extracting data
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if(request.message === "pass_it_on") {
+    if(request.message === "gumtree") {
       request.data[5] = localStorage.username;
       copyToClipboard(request.data.join("\t"));
       var opt = {
@@ -24,11 +24,18 @@ chrome.runtime.onMessage.addListener(
       }
       chrome.notifications.create("", opt, callback);
     }
+    else if (request.message === "ebay") {
+      request.data[3] = localStorage.username;
+      var fn = request.data;
+      console.log(request.data);
+      copyToClipboard(fn[0]+'\n'+fn[1]+" "+fn[2]+" "+fn[3]+"\t"+fn[4]+" "+fn[5]+" "+fn[6]);
+    }
   }
 );
 
 // Copy extracted data to clipboard
 function copyToClipboard(str) {
+  console.log("a");
   // Create a dummy input to copy the string array inside it
   var dummy = document.createElement("input");
   // Add it to the document
