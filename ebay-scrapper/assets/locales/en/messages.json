@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "eBay-scrapper"
+    },
+    "appShortName": {
+        "message": "eBay-scrapper"
+    },
+    "appDescription": {
+        "message": "Scrap an item information from eBay"
+    }
+}
